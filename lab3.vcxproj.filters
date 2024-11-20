@@ -21,6 +21,9 @@
     <ClCompile Include="TIME.ixx">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
+    <ClCompile Include="SET.ixx">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="result.txt">

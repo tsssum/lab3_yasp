@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lab3.cpp" />
+    <ClCompile Include="SET.ixx" />
     <ClCompile Include="TIME.ixx" />
   </ItemGroup>
   <ItemGroup>
