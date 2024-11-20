@@ -65,6 +65,7 @@ int main()
 
 	//s3.add("kys<3");
 	//s3.add("uchi albanskiy");
+
 	s3.print_to_console();
 
 	std::cin.ignore(std::cin.rdbuf()->in_avail()).get();
