@@ -32,8 +32,6 @@ int menu(const char* message, bool(*condition)(int, int), int border);
 int exit();
 template<typename T>
 void tasks(Set<T>& set, short option);
-void string_tasks(short option) {};
-void time_tasks(short option) {};
 template<typename T>
 T validation();
 int valid_int();
