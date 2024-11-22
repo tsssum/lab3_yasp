@@ -22,7 +22,10 @@ private:
 public:
 	Set();
 	Set(const std::string& filename);
+	Set(const Set& other);
 	~Set();
+
+	Set<T>& operator=(const Set& other);
 
 	void add(const T& elem);
 	void del(const T& elem);
@@ -72,12 +75,29 @@ Set<T>::Set(const std::string& filename) :size(0)
 	else
 	{
 		T value;
-		while (file >> value)
+		if constexpr (std::is_same<T, std::string>::value)
+		{
+			while (!file.eof())
+			{
+				std::getline(file, value);
+				add(value);
+			}
+		}
+		else while (file >> value)
 		{
 			add(value);
 		}
 		file.close();
-		valid();
+	}
+}
+
+template<typename T>
+Set<T>::Set(const Set& other)
+{
+	elems = new T[MAX];
+	for (size_t i = 0; i < size; ++i) 
+	{
+		elems[i] = other.elems[i];
 	}
 }
 
@@ -85,6 +105,22 @@ template<typename T>
 Set<T>::~Set()
 {
 	delete[]elems;
+}
+
+template<typename T>
+Set<T>& Set<T>::operator=(const Set& other)
+{
+	if (this != &other) 
+	{ 
+
+		size = other.size;
+		elems = new T[MAX];
+
+		for (size_t i = 0; i < size; ++i) {
+			elems[i] = other.elems[i]; 
+		}
+	}
+	return *this;
 }
 
 template<typename T>
@@ -105,7 +141,8 @@ void Set<T>::del(const T& elem)
 	{
 		if (elems[i] == elem)
 		{
-			circle_to_left(elems + i, size - i);
+			if(i!= size-1)
+				circle_to_left(elems + i, size - i);
 			--size;
 		}
 	}
